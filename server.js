@@ -7,6 +7,7 @@ import {initTables} from "./src/db/setup/init.js";
 import pingRoute from "./src/routes/pingRoute.js";
 import config from "./src/config.js";
 import authRoute from "./src/routes/authRoutes.js";
+import {initSocket} from "./src/socket/initSocket.js";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -30,7 +31,9 @@ try {
     console.error("DB ERROR", e);
 }
 
-await fastify.listen({ port: config.port });
+await fastify.listen({ port: config.port, host: config.host });
+
+initSocket(fastify.server)
 
 console.log(`Server started`);
 

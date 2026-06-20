@@ -1,10 +1,10 @@
 import "dotenv/config";
 
 const config = {
-    port: process.env.PORT || 3000,
-    host: process.env.HOST || "0.0.0.0",
-    db_url: process.env.DATABASE_URL,
-    secret: process.env.JWT_SECRET,
+    port: Number(process.env.PORT),
+    host: String(process.env.HOST),
+    db_url: String(process.env.DATABASE_URL),
+    secret: String(process.env.JWT_SECRET),
 }
 
 export default config;

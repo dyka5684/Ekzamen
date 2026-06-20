@@ -1,28 +1,41 @@
-import {createPlayer, findPlayerByNickname} from "../db/repositories/playerRepository.js";
+import { createPlayer, findPlayerByNickname } from "../db/repositories/playerRepository.js";
 import jwtHelper from "../helpers/jwt.js";
-import {isInvalidNickname} from "../validators/auth.js";
+import { validateNickname } from "../validators/nickname.js";
 
 export default async function authRoutes(fastify) {
     fastify.post("/auth/login", async (request, reply) => {
-        const { nickname } = request.body;
+        let { nickname } = request.body;
 
-        if (isInvalidNickname(nickname)) {
+        try {
+            nickname = validateNickname(nickname);
+        } catch (e) {
             return reply.status(400).send({
-                message: "Nickname required"
+                error: "INVALID_NICKNAME",
+                message: e.message
             });
         }
 
-        let player = await findPlayerByNickname(nickname);
+        try {
+            let player = await findPlayerByNickname(nickname);
 
-        if (!player) {
-            player = await createPlayer(nickname);
+            if (!player) {
+                player = await createPlayer(nickname);
+            }
+
+            const token = jwtHelper.createToken(player);
+
+            return reply.send({
+                token,
+                nickname: player.nickname
+            });
+
+        } catch (e) {
+            console.error("AUTH_LOGIN_ERROR:", e);
+
+            return reply.status(500).send({
+                error: "AUTH_INTERNAL_ERROR",
+                message: "Something went wrong"
+            });
         }
-
-        const token = jwtHelper.createToken(player);
-
-        return reply.send({
-            token,
-            nickname: player.nickname
-        });
     });
 }

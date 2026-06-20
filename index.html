@@ -1,14 +1,138 @@
-<!DOCTYPE html>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Game</title>
+    <meta charset="UTF-8">
+    <title>Socket Test Client</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+        }
+
+        .panel {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        #chatMessages,
+        #logs,
+        #players {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 8px;
+            background: #fafafa;
+        }
+
+        #chatMessages {
+            height: 400px;
+        }
+
+        #logs {
+            background: #111;
+            color: #0f0;
+            font-family: monospace;
+        }
+
+        .chat-row {
+            margin-bottom: 6px;
+        }
+
+        .system {
+            color: #888;
+        }
+
+        .error {
+            color: red;
+        }
+
+        input {
+            padding: 8px;
+        }
+
+        button {
+            padding: 8px;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+    </style>
 </head>
-
-<h1>Game</h1>
-
 <body>
-<script type="module" src="game/main.js"></script>
+
+<div class="column">
+
+    <div class="panel">
+        <div>
+            Status:
+            <span id="status" class="status">
+                Disconnected
+            </span>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Login</h3>
+
+        <label for="nickname"></label><input
+                id="nickname"
+                placeholder="Nickname"
+        >
+
+        <button id="loginBtn">
+            Login
+        </button>
+    </div>
+
+    <div class="panel">
+        <h3>Players</h3>
+
+        <div id="players"></div>
+    </div>
+
+</div>
+
+<div class="column">
+
+    <div class="panel">
+        <h3>Chat</h3>
+
+        <div id="chatMessages"></div>
+
+        <br>
+
+        <label for="messageInput"></label><input
+                id="messageInput"
+                placeholder="Message"
+        >
+
+        <button id="sendBtn">
+            Send
+        </button>
+    </div>
+
+</div>
+
+<div class="column">
+
+    <div class="panel">
+        <h3>Events</h3>
+
+        <div id="logs"></div>
+    </div>
+
+</div>
+
+<script type="module" src="/game/main.js"></script>
+
 </body>
 </html>
