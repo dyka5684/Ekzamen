@@ -1,6 +1,5 @@
 import db from "../db.js";
 
-
 export async function findPlayerByNickname(nickname) {
     const result = await db.query(
         `

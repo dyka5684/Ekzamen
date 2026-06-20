@@ -1,11 +1,13 @@
 import Fastify from "fastify";
-import "dotenv/config";
 import path from "node:path";
 import { fileURLToPath } from "url";
 import fastifyStatic from "@fastify/static";
 import db from "./src/db/db.js";
 import {initTables} from "./src/db/setup/init.js";
 import pingRoute from "./src/routes/pingRoute.js";
+import config from "./src/config.js";
+import authRoute from "./src/routes/authRoutes.js";
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,7 +20,7 @@ await fastify.register(fastifyStatic, {
 });
 
 await fastify.register(pingRoute)
-
+await fastify.register(authRoute)
 
 try {
     const result = await db.query("SELECT NOW()");
@@ -28,11 +30,7 @@ try {
     console.error("DB ERROR", e);
 }
 
-
-
-const PORT = process.env.port;
-
-await fastify.listen({ port: PORT });
+await fastify.listen({ port: config.port });
 
 console.log(`Server started`);
 
