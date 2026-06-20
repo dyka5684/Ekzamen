@@ -1,0 +1,27 @@
+{
+  "name": "ekzamen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dyka5684/Ekzamen.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dyka5684/Ekzamen/issues"
+  },
+  "homepage": "https://github.com/dyka5684/Ekzamen#readme",
+  "dependencies": {
+    "fastify": "^5.8.5",
+    "socket.io": "^4.8.3",
+    "socket.io-client": "^4.8.3",
+    "three": "^0.184.0"
+  }
+}
