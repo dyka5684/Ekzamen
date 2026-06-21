@@ -6,7 +6,7 @@ export async function initTables() {
         CREATE TABLE IF NOT EXISTS players (
             id SERIAL PRIMARY KEY,
             nickname VARCHAR(20) UNIQUE NOT NULL,
-            created_at TIMESTAMP DEFAULT NOW()
+            created_at TIMESTAMPTZ DEFAULT NOW()
         )
     `);
 
@@ -15,7 +15,7 @@ export async function initTables() {
             id SERIAL PRIMARY KEY,
             nickname VARCHAR(20) NOT NULL,
             text TEXT NOT NULL,
-            created_at TIMESTAMP DEFAULT NOW()
+            created_at TIMESTAMPTZ DEFAULT NOW()
         )
     `);
 

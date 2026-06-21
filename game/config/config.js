@@ -6,7 +6,7 @@ export const GAME_CONFIG = {
     },
 
     render: {
-        scale: 1
+        scale: 3
     },
 
     camera: {
@@ -37,8 +37,8 @@ export const GAME_CONFIG = {
     },
 
     player: {
-        size: 1,
-        labelOffsetY: 1.2
+        size: 1.5,
+        labelOffsetY: 2
     },
 
     interpolation: {

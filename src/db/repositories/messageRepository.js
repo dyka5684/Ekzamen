@@ -5,11 +5,11 @@ export async function getLastMessages() {
     const res = await db.query(`
         SELECT nickname, text, created_at
         FROM messages
-        ORDER BY created_at ASC
+        ORDER BY created_at DESC
             LIMIT 25
     `);
 
-    return res.rows;
+    return res.rows.reverse();
 }
 
 export async function createMessage(nickname, msg) {
